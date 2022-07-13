@@ -28,7 +28,7 @@ public class Account
         var accNumber = ++_accountSeed;
         _number = accNumber.ToString();
         _name = customerName;
-        _transactions.Add(new Transaction(DateTime.Now, initialDeposit));
+        _transactions.Add(new Transaction(DateTime.Now, initialDeposit, "Initial account opening deposit"));
     }
 
     public string GetName()
@@ -53,6 +53,11 @@ public class Account
         return tempBalance;
     }
 
+    public List<Transaction> GetTransactions()
+    {
+        return _transactions;
+    }
+
     public double Deposit(double amountDeposited)
     {
         if(amountDeposited <= 0)
@@ -60,7 +65,7 @@ public class Account
             throw new Exception("Deposit amount must be greater than zero");
         }
 
-        _transactions.Add(new Transaction(DateTime.Now, amountDeposited));
+        _transactions.Add(new Transaction(DateTime.Now, amountDeposited, "Cash Deposit"));
         
         return GetBalance();
     }
@@ -78,7 +83,7 @@ public class Account
             throw new Exception("Insuffient balance to complete the transaction");
         }
 
-        _transactions.Add(new Transaction(DateTime.Now, -amount));
+        _transactions.Add(new Transaction(DateTime.Now, -amount, "Cash Withdraw"));
 
         
         return GetBalance();

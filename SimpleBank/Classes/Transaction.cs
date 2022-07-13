@@ -10,11 +10,13 @@ public class Transaction
 {
     private DateTime _date;
     private double _amount;
-    
-    public Transaction(DateTime date, double amount)
+    private string _description;
+
+    public Transaction(DateTime date, double amount, string description)
     {
         _date = date;
         _amount = amount;
+        _description=description;
     }
 
     public double GetAmount()
@@ -25,5 +27,10 @@ public class Transaction
     public DateTime GetDate()
     {
         return _date;
+    }
+
+    public string GetDescription()
+    {
+        return _description;
     }
 }

@@ -178,7 +178,24 @@ public class Program
 
     static void PrintAccountStatement()
     {
+        Console.WriteLine("-------------------------------------------------------------");
+        Console.WriteLine("Enter the account number:");
+        var accNumber = Console.ReadLine();
+        var account = GetAccount(accNumber);
+        
+        // check if an actual account was found
+        if (account == null)
+        {
+            Console.WriteLine("Account not found.");
+            return;
+        }
 
+        Console.WriteLine("Date \t\t Description \t\t\t\t Amount");
+
+        foreach (var t in account.GetTransactions())
+        {
+            Console.WriteLine($"{t.GetDate()} \t\t {t.GetDescription()} \t\t\t\t {t.GetAmount()}");
+        }
     }
 
     static void PrintBankStatus()
